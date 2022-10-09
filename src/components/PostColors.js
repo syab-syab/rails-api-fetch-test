@@ -1,7 +1,8 @@
-import React from 'react';
-import { useState } from 'react';
+import React from 'react'
+import { useState } from 'react'
 
-export default function PostSomethings() {
+export default function PostColors() {
+
   const [teaName, setTeaName] = useState('test');
 
   
@@ -18,7 +19,7 @@ export default function PostSomethings() {
 
   return (
     <div>
-      <p>PostSomethings</p>
+      <p>PostColors</p>
       <form>
           <label>
             Name:
@@ -30,15 +31,6 @@ export default function PostSomethings() {
             />
           </label>
           <br />
-          <label>
-          color:
-          <select>
-              <option value="4">red</option>
-              <option value="5">green</option>
-              <option value="6">yellow</option>
-            </select>
-          </label>
-          <br />
           <input
           // typeをsubmitにするとリロードされてしまう
             type="button"
@@ -46,7 +38,7 @@ export default function PostSomethings() {
             onClick={handleClick}
           />
         </form>
-        <p>{indicateValue}</p>
+      <p>{indicateValue}</p>
     </div>
   )
 }

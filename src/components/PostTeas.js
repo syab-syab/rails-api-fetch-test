@@ -1,6 +1,22 @@
 import React from 'react'
+import { useState } from 'react';
 
 export default function PostTeas() {
+
+  const [teaName, setTeaName] = useState('test');
+
+  
+  const [indicateValue, setIndicateValue] = useState('');
+
+  const handleChange = (e) => {
+    setTeaName(e.target.value);
+  }
+
+  const handleClick = (e) => {
+    setIndicateValue(teaName);
+    setTeaName('');
+  }
+
   return (
     <div>
       <p>PostTeas</p>
