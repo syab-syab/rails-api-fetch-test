@@ -3,41 +3,46 @@ import { useState } from 'react'
 
 export default function PostColors() {
 
-  const [teaName, setTeaName] = useState('test');
+  const [colorName, setColorName] = useState('test');
 
   
   const [indicateValue, setIndicateValue] = useState('');
 
   const handleChange = (e) => {
-    setTeaName(e.target.value);
+    setColorName(e.target.value);
   }
 
   const handleClick = (e) => {
-    setIndicateValue(teaName);
-    setTeaName('');
+    setIndicateValue(colorName);
+    setColorName('');
+  }
+
+  const postColors = () => {
+    const params = {
+      method: "POST",
+      body: JSON.stringify({"name": colorName}),
+      headers:{'Content-Type': 'application/json'}
+    }
+    const url = "http://localhost:3000/colors";
+    fetch(url, params);
   }
 
   return (
     <div>
       <p>PostColors</p>
-      <form>
           <label>
             Name:
             <input
               type="text"
               name="name"
-              value={teaName}
+              value={colorName}
               onChange={handleChange}
             />
           </label>
           <br />
-          <input
-          // typeをsubmitにするとリロードされてしまう
-            type="button"
-            value="Submit"
-            onClick={handleClick}
-          />
-        </form>
+
+          <button onClick={handleClick}>Submit</button>
+          <button onClick={postColors}>POST!</button>
       <p>{indicateValue}</p>
     </div>
   )
