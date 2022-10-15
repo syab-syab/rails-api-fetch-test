@@ -1,14 +1,32 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-const Lists = ({values}) => {
+const Lists = ({values, model}) => {
 
   // 編集画面へ遷移
   // const moveUpdate = () => {
 
   // }
 
-  const deleteValue = () => {
-    
+  const deleteValue = (id) => {
+    const url = `http://localhost:3000/${model}/${id}`;
+    const result =  window.confirm("削除してもOK？")
+
+    if (result) {
+      console.log(`URL is ${url}`);
+
+      const params = {
+        method: "DELETE"
+        // body: JSON.stringify({"name": colorName}),
+        // mode: "cors",
+        // headers:{'Content-Type': 'application/json'}
+      }
+      fetch(url, params)
+        .then(data => console.log(data))
+        .catch(err => console.log(err));
+    } else {
+      console.log("削除中止");
+    }
+
   }
 
   return (
@@ -19,7 +37,7 @@ const Lists = ({values}) => {
           <div key={value.id}>
               {value.name}
               <button>edit</button>
-              <button>delete</button>
+              <button onClick={() => deleteValue(value.id)}>delete</button>
           </div>
         ))}
       </nav>

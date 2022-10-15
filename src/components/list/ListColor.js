@@ -16,7 +16,7 @@ export default function ListColor() {
 
       { error && <div>{error.message}</div> }
       { isLoaded && <div>loading</div> }
-      { colors && <Lists values={colors['colors']}/>}
+      { colors && <Lists values={colors['colors']} model="colors"/>}
     </>
     
   )
