@@ -6,6 +6,7 @@ import PostSomethings from './components/PostSomethings';
 import Header from './components/Header';
 import PostColors from './components/PostColors';
 import ListColor from './components/list/ListColor';
+import UpdateColor from './components/list/UpdateColor';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
           <Route path='/post-somethings' element={<PostSomethings />} />
           <Route path='/post-colors' element={<PostColors />} />
           <Route path='/list-colors' element={<ListColor />} />
+          <Route path='/update-color' element={<UpdateColor />} />
         </Routes>
         
       </main>
