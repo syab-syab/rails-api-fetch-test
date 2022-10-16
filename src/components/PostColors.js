@@ -30,19 +30,19 @@ export default function PostColors() {
   return (
     <div>
       <p>PostColors</p>
-          <label>
-            Name:
-            <input
-              type="text"
-              name="name"
-              value={colorName}
-              onChange={handleChange}
-            />
-          </label>
-          <br />
+        <label>
+          Name:
+          <input
+            type="text"
+            name="name"
+            value={colorName}
+            onChange={handleChange}
+          />
+        </label>
+        <br />
 
-          <button onClick={handleClick}>Submit</button>
-          <button onClick={postColors}>POST!</button>
+        <button onClick={handleClick}>Submit</button>
+        <button onClick={postColors}>POST!</button>
       <p>{indicateValue}</p>
     </div>
   )
