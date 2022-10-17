@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+// import useFetchEdit from '../../hooks/useFetchEdit';
+
 const Lists = ({values, model}) => {
 
   // inputに格納する用
@@ -42,8 +44,8 @@ const Lists = ({values, model}) => {
     setValueName(e.target.value)
   }
 
-  // 
-  const editValue = (id, value) => {
+  // 編集(ここだけ切り出してフックにしようとしたら失敗)
+  const valueEdit = (id, value) => {
     const url = `http://localhost:3000/${model}/${id}`
     const result =  window.confirm("編集してもOK？");
     
@@ -57,7 +59,6 @@ const Lists = ({values, model}) => {
     } else {
       console.log("編集中止")
     }
-
   }
 
 
@@ -68,7 +69,7 @@ const Lists = ({values, model}) => {
           // 各ページの詳細が表示されないので修正する
           <div key={value.id}>
               {value.name}
-              <button onClick={() => editInputStore(value.id, value.name)}>edit</button>
+              <button onClick={() => editInputStore(value.id, value.name, model)}>edit</button>
               <button onClick={() => deleteValue(value.id)}>delete</button>
           </div>
         ))}
@@ -82,7 +83,8 @@ const Lists = ({values, model}) => {
         value={valueName}
         onChange={handleChange}
       />
-      <button onClick={() => editValue(editId, valueName)}>編集する</button>
+      {/* <button onClick={() => useFetchEdit(editId, valueName, model)}>編集する</button> */}
+      <button onClick={() => valueEdit(editId, valueName)}>編集する</button>
     </>
   );
 }

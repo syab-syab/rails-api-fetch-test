@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import usePost from '../hooks/usePost';
 
 export default function PostColors() {
 
@@ -17,14 +18,21 @@ export default function PostColors() {
     setColorName('');
   }
 
+  // postのメソッド
   const postColors = () => {
-    const params = {
-      method: "POST",
-      body: JSON.stringify({"name": colorName}),
-      headers:{'Content-Type': 'application/json'}
+    const result =  window.confirm("POSTしてもOK？");
+    if (result) {
+      const params = {
+        method: "POST",
+        body: JSON.stringify({"name": colorName}),
+        headers:{'Content-Type': 'application/json'}
+      }
+      const url = "http://localhost:3000/colors";
+      fetch(url, params);
+      alert("POST完了");
+    } else {
+      alert("中止");
     }
-    const url = "http://localhost:3000/colors";
-    fetch(url, params);
   }
 
   return (
@@ -43,6 +51,7 @@ export default function PostColors() {
 
         <button onClick={handleClick}>Submit</button>
         <button onClick={postColors}>POST!</button>
+        {/* <button onClick={() => usePost(colorName, "colors")}>POST!</button> */}
       <p>{indicateValue}</p>
     </div>
   )
