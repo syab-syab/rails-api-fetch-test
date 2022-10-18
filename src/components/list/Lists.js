@@ -1,11 +1,14 @@
 import { useState } from 'react'
 
-// import useFetchEdit from '../../hooks/useFetchEdit';
+import useFetchEdit from '../../hooks/useFetchEdit';
 
 const Lists = ({values, model}) => {
 
   // inputに格納する用
   const [valueName, setValueName] = useState("test");
+
+  // modelを格納する(テスト)
+  // const [modelName, setModelName] = useState(model);
 
   // 編集するデータのid
   const [editId, setEditId] = useState();
@@ -61,6 +64,9 @@ const Lists = ({values, model}) => {
     }
   }
 
+  // この時点で変数に入れてもstateはundefinedになってしまう
+  const testFunc = useFetchEdit(editId);
+
 
   return (
     <>
@@ -77,6 +83,7 @@ const Lists = ({values, model}) => {
       <p>Edit Area</p>
       <p>edit id is {editId}</p>
       <p>edit value is {valueName}</p>
+      <p>{}</p>
       <label>name: </label>
       <input
         type="text"
@@ -85,6 +92,7 @@ const Lists = ({values, model}) => {
       />
       {/* <button onClick={() => useFetchEdit(editId, valueName, model)}>編集する</button> */}
       <button onClick={() => valueEdit(editId, valueName)}>編集する</button>
+      <button onClick={testFunc}>TEST</button>
     </>
   );
 }
