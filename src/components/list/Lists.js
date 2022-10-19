@@ -64,8 +64,10 @@ const Lists = ({values, model}) => {
     }
   }
 
-  // この時点で変数に入れてもstateはundefinedになってしまう
-  const testFunc = useFetchEdit(editId);
+  // この時点で変数に入れても引数(state)はundefinedになってしまう
+  // ListColorコンポーネントではuseFetchから返された変数が定数に格納されている
+  // 根本的な使い方自体間違っている？
+  const testFunc = useFetchEdit;
 
 
   return (
@@ -92,7 +94,7 @@ const Lists = ({values, model}) => {
       />
       {/* <button onClick={() => useFetchEdit(editId, valueName, model)}>編集する</button> */}
       <button onClick={() => valueEdit(editId, valueName)}>編集する</button>
-      <button onClick={testFunc}>TEST</button>
+      <button onClick={() => testFunc(editId, valueName, model)}>TEST</button>
     </>
   );
 }
