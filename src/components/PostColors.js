@@ -19,21 +19,7 @@ export default function PostColors() {
   }
 
   // postのメソッド
-  const postColors = () => {
-    const result =  window.confirm("POSTしてもOK？");
-    if (result) {
-      const params = {
-        method: "POST",
-        body: JSON.stringify({"name": colorName}),
-        headers:{'Content-Type': 'application/json'}
-      }
-      const url = "http://localhost:3000/colors";
-      fetch(url, params);
-      alert("POST完了");
-    } else {
-      alert("中止");
-    }
-  }
+  const postColors = usePost;
 
   return (
     <div>
@@ -50,8 +36,8 @@ export default function PostColors() {
         <br />
 
         <button onClick={handleClick}>Submit</button>
-        <button onClick={postColors}>POST!</button>
-        {/* <button onClick={() => usePost(colorName, "colors")}>POST!</button> */}
+        {/* <button onClick={postColors}>POST!</button> */}
+        <button onClick={() => postColors(colorName, "colors")}>POST!</button>
       <p>{indicateValue}</p>
     </div>
   )
