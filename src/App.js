@@ -10,6 +10,7 @@ import UpdateColor from './components/list/UpdateColor';
 
 function App() {
 
+  // せっかくだから管理画面風のデザインを目指す
   return (
     <div className="App">
       <Header />
