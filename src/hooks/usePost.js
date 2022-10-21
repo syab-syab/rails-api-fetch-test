@@ -3,7 +3,11 @@ const usePost = (value, model) => {
   if (result) {
     const params = {
       method: "POST",
-      body: JSON.stringify({"name": value}),
+      // valueとキーはモデルごとに数が違うから配列かオブジェクトで渡せるよう後ほど修正
+      // Object.keys(オブジェクト)でオブジェクトのキーを
+      // Object.values(オブジェクト)でオブジェクトの値を
+      // 取得できる
+      body: JSON.stringify(value),
       headers:{'Content-Type': 'application/json'}
     }
     // const url = `http://localhost:3000/${model}`;

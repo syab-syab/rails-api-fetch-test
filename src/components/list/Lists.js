@@ -59,7 +59,7 @@ const Lists = ({values, model}) => {
         value={valueName}
         onChange={handleChange}
       />
-      <button onClick={() => dataEdit(editId, valueName, model, resetState)}>SUBMIT</button>
+      <button onClick={() => dataEdit(editId, { "name": valueName }, model, resetState)}>SUBMIT</button>
       <br />
     </>
   );

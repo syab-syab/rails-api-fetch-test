@@ -5,7 +5,10 @@ const useFetchEdit = (id, value, model, func) => {
     const params = {
       method: "PUT",
       // valueとキーはモデルごとに数が違うから配列かオブジェクトで渡せるよう後ほど修正
-      body: JSON.stringify({"name": value}),
+      // Object.keys(オブジェクト)でオブジェクトのキーを
+      // Object.values(オブジェクト)でオブジェクトの値を
+      // 取得できる
+      body: JSON.stringify(value),
       headers:{'Content-Type': 'application/json'}
     }
 

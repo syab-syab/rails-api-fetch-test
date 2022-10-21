@@ -37,7 +37,7 @@ export default function PostColors() {
 
         <button onClick={handleClick}>Submit</button>
         {/* <button onClick={postColors}>POST!</button> */}
-        <button onClick={() => postColors(colorName, "colors")}>POST!</button>
+        <button onClick={() => postColors({"name": colorName}, "colors")}>POST!</button>
       <p>{indicateValue}</p>
     </div>
   )
