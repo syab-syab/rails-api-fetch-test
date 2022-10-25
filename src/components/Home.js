@@ -48,23 +48,67 @@ export default function Home() {
         </ul>
       </div>
       {/* PostとEditのフォームを同時に出さないようにする */}
+      {/* 2つのフォームはコンポーネントに切り出す */}
       { (showPostForm && !showEditForm) &&
-      <>
+      <div id='overlay'>
         <p>Post</p>
-        <form>
-          <label>値:</label><input type="text" />
-          <button>登録</button>
-        </form>
-      </>
+        <div id='content'>
+          <form>
+            <label>name: </label><input type="text" />
+            <br />
+            <label>description: </label><textarea></textarea>
+            <br />
+            <label>caffeine: </label>
+            <select>
+              <option value="1">多め</option>
+              <option value="2">普通</option>
+              <option value="3">少なめ</option>
+              <option value="4">無し</option>
+              <option value="5">不明</option>
+            </select>
+            <br />
+            <label>tea's type: </label>
+            <select>
+              <option value="1">日本茶</option>
+              <option value="2">紅茶</option>
+              <option value="3">ハーブティー</option>
+              <option value="4">その他</option>
+            </select>
+            <br />
+            <button onClick={() => handleShowPost()}>登録</button>
+          </form>
+        </div>
+
+      </div>
       }
       { (showEditForm && !showPostForm) &&
-        <>
+        <div id='overlay'>
           <p>Edit</p>
-          <form>
-            <label>値:</label><input type="text" />
-            <button>登録</button>
-          </form>
-        </>
+          <div id='content'>
+            <form>
+              <label>name: </label><input type="text" />
+              <br />
+              <label>description: </label><textarea></textarea>
+              <br />
+              <select>
+                <option value="1">多め</option>
+                <option value="2">普通</option>
+                <option value="3">少なめ</option>
+                <option value="4">無し</option>
+                <option value="5">不明</option>
+              </select>
+              <br />
+              <select>
+                <option value="1">日本茶</option>
+                <option value="2">紅茶</option>
+                <option value="3">ハーブティー</option>
+                <option value="4">その他</option>
+              </select>
+              <br />
+              <button onClick={() => handleShowEdit()}>登録</button>
+            </form>
+          </div>
+        </div>
       }
     </div>
   )
