@@ -1,9 +1,6 @@
 import React from 'react'
-import { useState } from 'react'
-import PostForm from './PostForm'
-import EditForm from './EditForm'
 
-export default function Home() {
+const ManagementColor = () => {
   // postのモーダルウィンドウの真偽値
   const [showPostForm, setShowPostForm] = useState(false)
 
@@ -22,22 +19,9 @@ export default function Home() {
     console.log(showEditForm)
   }
 
-  // post, editのフォームに入力された値を保存するstateを定義する
-
   return (
     <div>
-      {/* ここに管理画面風のデザインを入れる */}
-      {/* 各モデルごとに切り替えられるようにする */}
-      {/* POST,EDIT,DELETEをこのページで完結できるようにする */}
-      <p>
-        {/* 表示されているモデルはaタグで囲わないように */}
-        <a href="#">Color</a> / 
-        <a href="#">Something</a> /
-        <a href="#">Caffeine(これは要らないかも)</a> /
-        <a href="#">Tea</a> /
-        <a href="#">Type</a>
-      </p>
-      <h3>モデル名</h3>
+      <h3>Color</h3>
       {/* Postをクリックしたらフォームがポップアップするように */}
       <h4><button onClick={() => handleShowPost()}>Post</button></h4>
       <div>
@@ -49,14 +33,8 @@ export default function Home() {
           <li>値1 | <button onClick={() => handleShowEdit()}>Edit</button> | <a href="#">Delete</a></li>
         </ul>
       </div>
-      {/* PostとEditのフォームを同時に出さないようにする */}
-      {/* 2つのフォームはコンポーネントに切り出す */}
-      { (showPostForm && !showEditForm) &&
-        <PostForm func={handleShowPost}/>
-      }
-      { (showEditForm && !showPostForm) &&
-        <EditForm func={handleShowEdit} />
-      }
     </div>
   )
 }
+
+export default ManagementColor
