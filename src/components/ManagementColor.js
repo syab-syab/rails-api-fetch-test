@@ -1,37 +1,29 @@
 import React from 'react'
 
+import useFetch from '../hooks/useFetch';
+
 const ManagementColor = () => {
-  // postのモーダルウィンドウの真偽値
-  const [showPostForm, setShowPostForm] = useState(false)
 
-  // editのモーダルウィンドウの真偽値
-  const [showEditForm, setShowEditForm] = useState(false)
+  const url = "http://localhost:3000/colors";
 
-  // postボタンの真偽値のハンドル
-  const handleShowPost = () => {
-    setShowPostForm(!showPostForm)
-    console.log(showPostForm)
-  }
+  const { data: colors, isLoaded, error } = useFetch(url)
 
-  // editボタンの真偽値のハンドル
-  const handleShowEdit = () => {
-    setShowEditForm(!showEditForm)
-    console.log(showEditForm)
-  }
 
   return (
     <div>
       <h3>Color</h3>
-      {/* Postをクリックしたらフォームがポップアップするように */}
-      <h4><button onClick={() => handleShowPost()}>Post</button></h4>
+      <h4><button>Post</button></h4>
       <div>
+      { error && <div>{error.message}</div> }
+      { isLoaded && <div>loading</div> }
+      {
+        colors &&
         <ul>
-          {/* EditとDeleteをクリックしたらポップアップでフォームが出てくるようにする */}
-          <li>値1 | <button onClick={() => handleShowEdit()}>Edit</button> | <a href="#">Delete</a></li>
-          <li>値1 | <button onClick={() => handleShowEdit()}>Edit</button> | <a href="#">Delete</a></li>
-          <li>値1 | <button onClick={() => handleShowEdit()}>Edit</button> | <a href="#">Delete</a></li>
-          <li>値1 | <button onClick={() => handleShowEdit()}>Edit</button> | <a href="#">Delete</a></li>
+          {colors['colors'].map(color => (
+            <li key={color.id}>{color.name} | <button>Edit</button> | <a href="#">Delete</a></li>
+          ))}
         </ul>
+      }
       </div>
     </div>
   )

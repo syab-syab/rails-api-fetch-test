@@ -2,25 +2,26 @@ import React from 'react'
 import { useState } from 'react'
 import PostForm from './PostForm'
 import EditForm from './EditForm'
+import ManagementColor from './ManagementColor'
 
 export default function Home() {
   // postのモーダルウィンドウの真偽値
-  const [showPostForm, setShowPostForm] = useState(false)
+  // const [showPostForm, setShowPostForm] = useState(false)
 
   // editのモーダルウィンドウの真偽値
-  const [showEditForm, setShowEditForm] = useState(false)
+  // const [showEditForm, setShowEditForm] = useState(false)
 
   // postボタンの真偽値のハンドル
-  const handleShowPost = () => {
-    setShowPostForm(!showPostForm)
-    console.log(showPostForm)
-  }
+  // const handleShowPost = () => {
+  //   setShowPostForm(!showPostForm)
+  //   console.log(showPostForm)
+  // }
 
   // editボタンの真偽値のハンドル
-  const handleShowEdit = () => {
-    setShowEditForm(!showEditForm)
-    console.log(showEditForm)
-  }
+  // const handleShowEdit = () => {
+  //   setShowEditForm(!showEditForm)
+  //   console.log(showEditForm)
+  // }
 
   // post, editのフォームに入力された値を保存するstateを定義する
 
@@ -37,26 +38,18 @@ export default function Home() {
         <a href="#">Tea</a> /
         <a href="#">Type</a>
       </p>
-      <h3>モデル名</h3>
-      {/* Postをクリックしたらフォームがポップアップするように */}
-      <h4><button onClick={() => handleShowPost()}>Post</button></h4>
-      <div>
-        <ul>
-          {/* EditとDeleteをクリックしたらポップアップでフォームが出てくるようにする */}
-          <li>値1 | <button onClick={() => handleShowEdit()}>Edit</button> | <a href="#">Delete</a></li>
-          <li>値1 | <button onClick={() => handleShowEdit()}>Edit</button> | <a href="#">Delete</a></li>
-          <li>値1 | <button onClick={() => handleShowEdit()}>Edit</button> | <a href="#">Delete</a></li>
-          <li>値1 | <button onClick={() => handleShowEdit()}>Edit</button> | <a href="#">Delete</a></li>
-        </ul>
-      </div>
+      {/* いずれは他のモデルでもやるけどまずはcolorから */}
+      <ManagementColor />
+      <PostForm />
+      <EditForm />
       {/* PostとEditのフォームを同時に出さないようにする */}
       {/* 2つのフォームはコンポーネントに切り出す */}
-      { (showPostForm && !showEditForm) &&
+      {/* { (showPostForm && !showEditForm) &&
         <PostForm func={handleShowPost}/>
-      }
-      { (showEditForm && !showPostForm) &&
+      } */}
+      {/* { (showEditForm && !showPostForm) &&
         <EditForm func={handleShowEdit} />
-      }
+      } */}
     </div>
   )
 }

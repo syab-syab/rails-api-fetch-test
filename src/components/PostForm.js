@@ -3,9 +3,11 @@ import React from 'react'
 
 const PostForm = ({func}) => {
   return (
-        <div id='overlay'>
+        // <div id='overlay'>
+        <div>
           <p>Post</p>
-          <div id='content'>
+          {/* <div id='content'> */}
+          <div>
             <form>
               <label>name: </label><input type="text" />
               <br />

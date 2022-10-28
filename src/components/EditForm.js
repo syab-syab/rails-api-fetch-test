@@ -3,9 +3,11 @@ import React from 'react'
 
 const EditForm = ({func}) => {
   return (
-    <div id='overlay'>
+  // <div id='overlay'>
+  <div>
     <p>Edit</p>
-    <div id='content'>
+    {/* <div id='content'> */}
+    <div>
       <form>
         <label>name: </label><input type="text" />
         <br />
