@@ -1,7 +1,7 @@
 import React from 'react'
 // 管理画面のEditのポップアップ
 
-const EditForm = ({func}) => {
+const EditForm = () => {
   return (
   // <div id='overlay'>
   <div>
@@ -28,7 +28,7 @@ const EditForm = ({func}) => {
           <option value="4">その他</option>
         </select>
         <br />
-        <button onClick={() =>func}>登録</button>
+        <button>登録</button>
       </form>
     </div>
   </div>

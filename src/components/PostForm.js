@@ -1,7 +1,7 @@
 import React from 'react'
 // 管理画面のPostのポップアップ
 
-const PostForm = ({func}) => {
+const PostForm = () => {
   return (
         // <div id='overlay'>
         <div>
@@ -30,10 +30,9 @@ const PostForm = ({func}) => {
                 <option value="4">その他</option>
               </select>
               <br />
-              <button onClick={() => func}>登録</button>
+              <button>登録</button>
             </form>
           </div>
-  
         </div>
   )
 }
