@@ -13,7 +13,6 @@ const ManagementColor = () => {
     <div>
       <div>
         <h3>Color</h3>
-        <h4><button>Post</button></h4>
         <div>
           { error && <div>{error.message}</div> }
           { isLoaded && <div>loading</div> }
@@ -27,7 +26,8 @@ const ManagementColor = () => {
           }
         </div>
       </div>
-      {/* Postフォーム */}
+      
+      {/* --------- Postフォーム --------- */}
       <div>
         <p>Post</p>
         {/* <div id='content'> */}
@@ -58,8 +58,9 @@ const ManagementColor = () => {
           </form>
         </div>
       </div>
-      {/* Postフォーム・End */}
-      {/* Editフォーム */}
+      {/* --------- Postフォーム・End --------- */}
+
+      {/* --------- Editフォーム --------- */}
       {/* <div id='overlay' > */}
       <div>
         <p>Edit</p>
@@ -89,7 +90,7 @@ const ManagementColor = () => {
           </form>
         </div>
       </div>
-      {/* Editフォーム・End */}
+      {/* --------- Editフォーム・End --------- */}
     </div>
   )
 }
