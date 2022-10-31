@@ -60,3 +60,40 @@
   padding: 1em;
   background:#fff;
 }
+
+/* 管理画面のテーブル */
+
+.table-container {
+  margin: 0 auto;
+  width: 650px;
+}
+
+.table {
+  display: flex;
+
+}
+
+.table span {
+  display: inline-block;
+  border: solid 1px #222;
+  padding: 4px 16px;
+  width: 180px;
+}
+
+.table span:first-child {
+  width: 170px;
+  border-right: none !important;
+}
+
+.table span:nth-child(2) {
+  width: 180px;
+}
+
+.table-header {
+  text-align: center;
+  background-color: #61dafb;
+}
+
+.table-body {
+  border-top: none !important;
+}

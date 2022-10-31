@@ -13,18 +13,25 @@ const ManagementColor = () => {
     <div>
       <div>
         <h3>Color</h3>
-        <div>
-          { error && <div>{error.message}</div> }
-          { isLoaded && <div>loading</div> }
-          {
-            colors &&
-            <ul>
-              {colors['colors'].map(color => (
-                <li key={color.id}>{color.name} | <button>Edit</button> | <a href="#">Delete</a></li>
-              ))}
-            </ul>
-          }
-        </div>
+        { error && <div>{error.message}</div> }
+        { isLoaded && <div>loading</div> }
+        {
+          colors &&
+          <div className='table-container'>
+            <div className="table">
+              <span className='table-header'>name</span>
+              <span className='table-header'>edit</span>
+              <span className='table-header'>delete</span>
+            </div>
+            {colors['colors'].map(color => (
+              <div key={color.id} className="table">
+                <span className='table-body'>{color.name}</span>
+                <span className='table-body'><button>Edit</button></span>
+                <span className='table-body'><a href="#">Delete</a></span>
+              </div>
+            ))}
+          </div>
+        }
       </div>
       
       {/* --------- Postフォーム --------- */}
