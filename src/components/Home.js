@@ -7,7 +7,7 @@ import ManagementCaffeine from './ManagementCaffeine';
 export default function Home() {
 
   return (
-    <div>
+    <div id='home'>
       {/* ここに管理画面風のデザインを入れる */}
       {/* 各モデルごとに切り替えられるようにする */}
       {/* POST,EDIT,DELETEをこのページで完結できるようにする */}

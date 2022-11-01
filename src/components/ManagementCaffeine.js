@@ -18,12 +18,25 @@ const ManagementCaffeine = () => {
           { isLoaded && <div>loading</div> }
           {
             caffeines &&
-            <ul>
-              {caffeines['caffeines'].map(caffeine => (
-                <li key={caffeine.id}>{caffeine.amount} | <button>Edit</button> | <a href="#">Delete</a></li>
-              ))}
-            </ul>
+            <div className='table-container'>
+              <table className='table' align='center'>
+                <tr>
+                  <th>amount</th><th>edit</th><th>delete</th>
+                </tr>
+                {
+                  caffeines['caffeines'].map(caffeine => (
+                    <tr key={caffeine.id}>
+                      <td>{caffeine.amount}</td>
+                      <td><button>Edit</button></td>
+                      <td><a href="#">Delete</a></td>
+                    </tr>
+                  ))
+                }
+              </table>
+            </div>
           }
+
+          
         </div>
       </div>
       

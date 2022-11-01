@@ -17,12 +17,23 @@ const ManagementSomething = () => {
           { isLoaded && <div>loading</div> }
           {
             somethings &&
-            <ul>
-              {/* something.color_idは対応するcolorモデルのnameを入れる */}
-              {somethings['somethings'].map(something => (
-                <li key={something.id}>{something.name} | {something.color_id} | <button>Edit</button> | <a href="#">Delete</a></li>
-              ))}
-            </ul>
+            <div className='table-container'>
+              <table className='table' align='center'>
+                <tr>
+                  <th>name</th><th>color_id</th><th>edit</th><th>delete</th>
+                </tr>
+                {
+                  somethings['somethings'].map(something => (
+                    <tr key={something.id}>
+                      <td>{something.name}</td>
+                      <td>{something.color_id}</td>
+                      <td><button>Edit</button></td>
+                      <td><a href="#">Delete</a></td>
+                    </tr>
+                  ))
+                }
+              </table>
+            </div>
           }
         </div>
       </div>

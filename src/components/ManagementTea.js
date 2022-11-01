@@ -17,11 +17,25 @@ const ManagementTea = () => {
           {/* caffeine_idもcaffeine */}
           {
             teas &&
-            <ul>
-              {teas['teas'].map(tea => (
-                <li key={tea.id}>{tea.name} | カフェイン: {tea.caffeine_id} | 茶種: {tea.type_id} | {tea.description} | <button>Edit</button> | <a href="#">Delete</a></li>
-              ))}
-            </ul>
+            <div className='table-container'>
+              <table className='table' align='center'>
+                <tr>
+                  <th>name</th><th>caffeine</th><th>type</th><th>description</th><th>edit</th><th>delete</th>
+                </tr>
+                {
+                  teas['teas'].map(tea => (
+                    <tr key={tea.id}>
+                      <td>{tea.name}</td>
+                      <td>{tea.caffeine_id}</td>
+                      <td>{tea.type_id}</td>
+                      <td>{tea.description}</td>
+                      <td><button>Edit</button></td>
+                      <td><a href="#">Delete</a></td>
+                    </tr>
+                  ))
+                }
+              </table>
+            </div>
           }
         </div>
       </div>

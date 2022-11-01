@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,7 +35,36 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+
+/* 基幹部分 */
+
+* {
+  font-size: 62.5%;
+  box-sizing: border-box;
 }
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+
+body {
+  /* background: black; */
+  text-align: center;
+  font-size: 15rem;
+}
+
+/* 基幹部分 end */
+
+/* Homeコンポーネント全体 */
+
+#home {
+  font-size: 10rem;
+}
+
+/* Homeコンポーネント全体 end */
 
 /* ポップアップ */
 #overlay {
@@ -64,36 +93,19 @@
 /* 管理画面のテーブル */
 
 .table-container {
-  margin: 0 auto;
-  width: 650px;
+  /* width: 200rem; */
+  /* margin: 0 auto; */
 }
 
 .table {
-  display: flex;
-
+  border-collapse: collapse;
+  width: 80%;
 }
 
-.table span {
-  display: inline-block;
-  border: solid 1px #222;
-  padding: 4px 16px;
-  width: 180px;
+th, td {
+  border: 1px solid #8fbac8;
+  padding: 8px;
+  width: auto;
 }
 
-.table span:first-child {
-  width: 170px;
-  border-right: none !important;
-}
-
-.table span:nth-child(2) {
-  width: 180px;
-}
-
-.table-header {
-  text-align: center;
-  background-color: #61dafb;
-}
-
-.table-body {
-  border-top: none !important;
-}
+/* 管理画面のテーブル End */

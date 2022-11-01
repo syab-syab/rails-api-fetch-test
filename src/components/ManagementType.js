@@ -17,11 +17,22 @@ const ManagementType = () => {
           { isLoaded && <div>loading</div> }
           {
             types &&
-            <ul>
-              {types['types'].map(type => (
-                <li key={type.id}>{type.name} | <button>Edit</button> | <a href="#">Delete</a></li>
-              ))}
-            </ul>
+            <div className='table-container'>
+              <table className='table' align='center'>
+                <tr>
+                  <th>name</th><th>edit</th><th>delete</th>
+                </tr>
+                {
+                  types['types'].map(type => (
+                    <tr key={type.id}>
+                      <td>{type.name}</td>
+                      <td><button>Edit</button></td>
+                      <td><a href="#">Delete</a></td>
+                    </tr>
+                  ))
+                }
+              </table>
+            </div>
           }
         </div>
       </div>

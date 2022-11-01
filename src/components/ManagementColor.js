@@ -18,18 +18,20 @@ const ManagementColor = () => {
         {
           colors &&
           <div className='table-container'>
-            <div className="table">
-              <span className='table-header'>name</span>
-              <span className='table-header'>edit</span>
-              <span className='table-header'>delete</span>
-            </div>
-            {colors['colors'].map(color => (
-              <div key={color.id} className="table">
-                <span className='table-body'>{color.name}</span>
-                <span className='table-body'><button>Edit</button></span>
-                <span className='table-body'><a href="#">Delete</a></span>
-              </div>
-            ))}
+            <table className='table' align='center'>
+              <tr>
+                <th>name</th><th>edit</th><th>delete</th>
+              </tr>
+              {
+                colors['colors'].map(color => (
+                  <tr key={color.id}>
+                    <td>{color.name}</td>
+                    <td><button>Edit</button></td>
+                    <td><a href="#">Delete</a></td>
+                  </tr>
+                ))
+              }
+            </table>
           </div>
         }
       </div>
