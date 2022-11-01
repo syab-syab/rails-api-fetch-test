@@ -1,12 +1,20 @@
 import React from 'react'
 import useFetch from '../hooks/useFetch';
+import useFetchSimple from '../hooks/useFetchSimple';
+import {useState} from 'react'
 // 管理画面のSomethingのリスト
 
 const ManagementSomething = () => {
 
   const url = "http://localhost:3000/somethings";
 
+  // const urlSub = "http://localhost:3000/colors"
+
   const { data: somethings, isLoaded, error } = useFetch(url)
+
+  // const subData = useFetchSimple(urlSub)
+
+  // console.log("subdata = " + subData)
 
   return (
     <div>
