@@ -1,19 +1,45 @@
 // somethingなど他のmodelと関連付けてあるやつ用
-
-import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react';
 
 const useFetchSimple = (url) => {
-  const [data, setData] = useState(null)
+  const [data, setItems] = useState(null);
+  // const [error, setError] = useState(null);
+  // const [isLoaded, setIsLoaded] = useState(true);
 
-  setTimeout(() => {
-    fetch(url)
-      .then(data => {
-        console.log(data)
-        setData(data)
-      })
-  }, 500);
 
+  useEffect(() => {
+    const abortCont = new AbortController();
+
+    setTimeout(() => {
+      fetch(url, { signal: abortCont.signal })
+        .then(res => {
+          if (!res.ok) {
+            throw Error('could not fetch the data for that resource');
+          }
+          return res.json();
+        })
+        .then(data => {
+          console.log(data)
+          // setIsLoaded(false);
+          setItems(data);
+          // setError(null)
+        })
+        .catch(err => {
+          if (err.name === 'AbortError') {
+            console.log('fetch aborted')
+          } 
+          // else {
+          //   setIsLoaded(false);
+          //   setError(err.message);
+          // }
+        })
+      }, 1500);
+
+    return () => abortCont.abort();
+    
+  }, [])
+  console.log("yes simple")
+  // return { data, isLoaded, error };
   return data
 }
 

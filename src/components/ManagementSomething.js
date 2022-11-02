@@ -8,13 +8,13 @@ const ManagementSomething = () => {
 
   const url = "http://localhost:3000/somethings";
 
-  // const urlSub = "http://localhost:3000/colors"
+  const urlSub = "http://localhost:3000/colors"
 
   const { data: somethings, isLoaded, error } = useFetch(url)
 
-  // const subData = useFetchSimple(urlSub)
+  const subData = useFetchSimple(urlSub)
 
-  // console.log("subdata = " + subData)
+  console.log(subData)
 
   return (
     <div>
@@ -43,6 +43,13 @@ const ManagementSomething = () => {
               </table>
             </div>
           }
+          <div>
+            {
+              subData['colors'].map(color => (
+                <p key={color.id}>{color.id} : {color.name}</p>
+              ))
+            }
+          </div>
         </div>
       </div>
       
