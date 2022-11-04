@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 const useFetchSuper = (url, refUrl) => {
   const [data, setItems] = useState(null);
-  const [refData, setRefData] = useState(null);
+  const [subData, setSubData] = useState(null);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(true);
 
@@ -25,6 +25,15 @@ const useFetchSuper = (url, refUrl) => {
           setIsLoaded(false);
           setItems(data);
           setError(null)
+          // もう一度fetchを使う
+          return fetch(refUrl);
+        })
+        .then(res => {
+          return res.json();
+        })
+        .then(data => {
+          console.log(data)
+          setSubData(data)
         })
         .catch(err => {
           if (err.name === 'AbortError') {
@@ -40,7 +49,7 @@ const useFetchSuper = (url, refUrl) => {
     
   }, [url])
   console.log("yes")
-  return { data, isLoaded, error };
+  return { data, subData, isLoaded, error };
 }
 
 export default useFetchSuper

@@ -1,6 +1,7 @@
 import React from 'react'
-import useFetch from '../hooks/useFetch';
-import useFetchSimple from '../hooks/useFetchSimple';
+// import useFetch from '../hooks/useFetch';
+// import useFetchSimple from '../hooks/useFetchSimple';
+import useFetchSuper from '../hooks/useFetchSuper';
 import {useState} from 'react'
 // 管理画面のSomethingのリスト
 
@@ -10,15 +11,14 @@ const ManagementSomething = () => {
 
   const url = "http://localhost:3000/somethings";
 
-  const urlSub = "http://localhost:3000/colors"
+  const urlSub = "http://localhost:3000/colors";
 
-  const { data: somethings, isLoaded, error } = useFetch(url)
+  // const { data: somethings, isLoaded, error } = useFetch(url)
 
-  // const { data, isLoaded, error } = useFetch(url)
+  const { data: somethings, subData, isLoaded, error } = useFetchSuper(url, urlSub)
 
-  // フックを使わずにここに書いた方が良いかも
-  const subData = useFetchSimple(urlSub)
 
+  // fetchで取ってきたオブジェクトのうち2つ目にエラーが出る
   console.log(typeof subData)
   // console.log(subData.find(element => element.id === 4))
 
@@ -30,7 +30,6 @@ const ManagementSomething = () => {
     return typeof id
   }
 
-  // dataArrange();
 
   return (
     <div>
@@ -53,11 +52,8 @@ const ManagementSomething = () => {
                   somethings['somethings'].map(something => (
                     <tr key={something.id}>
                       <td>{something.name}</td>
-                      {/* color_idから関連付けられているcolorを表示する */}
-                      {/* ここで表示する前に関数でデータを成型した方が良いかも */}
                       <td>
                         {something.color_id}
-                        {/* {dataArrange(something.color_id)} */}
                       </td>
                       <td><button>Edit</button></td>
                       <td><a href="#">Delete</a></td>
@@ -69,11 +65,16 @@ const ManagementSomething = () => {
             </div>
           }
           <div>
-            {/* {
-              subData['colors'].map(color => (
-                <p key={color.id}>{color.id} : {color.name}</p>
-              ))
-            } */}
+            {
+              subData &&
+              <div>
+              {
+                subData.map(color => (
+                  <p key={color.id}>{color.id} : {color.name}</p>
+                ))
+              }
+              </div>
+            }
             {dataArrange(4)}
           </div>
         </div>
@@ -88,17 +89,16 @@ const ManagementSomething = () => {
             <label>name: </label><input type="text" />
             <br />
             <label>color: </label>
-            <select>
-              {/* {
+            {
+              subData &&
+              <select>
+              {
                 subData.map(sub => (
                   <option key={sub.id} value={sub.id}>{sub.name}</option>
                 ))
-              } */}
-              <option value="1">test</option>
-              <option value="2">test</option>
-              <option value="3">test</option>
-              <option value="4">test</option>
+              }
             </select>
+            }
             <br />
             <button>登録</button>
           </form>
