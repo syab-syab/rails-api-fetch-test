@@ -32,6 +32,7 @@ const useFetchSuper = (url, refUrl) => {
           return res.json();
         })
         .then(data => {
+          console.log("↓ ↓ subData ↓ ↓")
           console.log(data)
           setSubData(data)
         })

@@ -2,32 +2,24 @@ import React from 'react'
 // import useFetch from '../hooks/useFetch';
 // import useFetchSimple from '../hooks/useFetchSimple';
 import useFetchSuper from '../hooks/useFetchSuper';
-import {useState} from 'react'
+// import {useState} from 'react'
 // 管理画面のSomethingのリスト
 
 const ManagementSomething = () => {
-
-  // const [somethings, setSomethings] = useState(null)
 
   const url = "http://localhost:3000/somethings";
 
   const urlSub = "http://localhost:3000/colors";
 
-  // const { data: somethings, isLoaded, error } = useFetch(url)
-
   const { data: somethings, subData, isLoaded, error } = useFetchSuper(url, urlSub)
 
 
-  // fetchで取ってきたオブジェクトのうち2つ目にエラーが出る
-  console.log(typeof subData)
-  // console.log(subData.find(element => element.id === 4))
-
-  const dataArrange = (id) => {
+  // もうちょい良い名前に変える
+  // どのコンポーネントでも使えるように切り出す
+  const dataArrange = (data, id) => {
     // メインのデータに関連付けられているIDからモデルの名前を付ける
-    // console.log(subData.find(element => element.id === id))
-    // const color = subData.find(element => element.id === id)
-    // return color
-    return typeof id
+    const color = data.find(element => element.id === id)
+    return color
   }
 
 
@@ -53,7 +45,13 @@ const ManagementSomething = () => {
                     <tr key={something.id}>
                       <td>{something.name}</td>
                       <td>
-                        {something.color_id}
+                        {/* 対応するcolorを表示 */}
+                        {something.color_id}|
+                        {
+                          // 条件式を書かないとエラー
+                          subData &&
+                          dataArrange(subData, something.color_id)['name']
+                        }
                       </td>
                       <td><button>Edit</button></td>
                       <td><a href="#">Delete</a></td>
@@ -64,19 +62,7 @@ const ManagementSomething = () => {
               </table>
             </div>
           }
-          <div>
-            {
-              subData &&
-              <div>
-              {
-                subData.map(color => (
-                  <p key={color.id}>{color.id} : {color.name}</p>
-                ))
-              }
-              </div>
-            }
-            {dataArrange(4)}
-          </div>
+
         </div>
       </div>
       
