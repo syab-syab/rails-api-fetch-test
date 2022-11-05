@@ -3,6 +3,7 @@ import React from 'react'
 // import useFetchSimple from '../hooks/useFetchSimple';
 import useFetchSuper from '../hooks/useFetchSuper';
 // import {useState} from 'react'
+import dataMatch from '../functions/dataMatch';
 // 管理画面のSomethingのリスト
 
 const ManagementSomething = () => {
@@ -13,14 +14,6 @@ const ManagementSomething = () => {
 
   const { data: somethings, subData, isLoaded, error } = useFetchSuper(url, urlSub)
 
-
-  // もうちょい良い名前に変える
-  // どのコンポーネントでも使えるように切り出す
-  const dataArrange = (data, id) => {
-    // メインのデータに関連付けられているIDからモデルの名前を付ける
-    const color = data.find(element => element.id === id)
-    return color
-  }
 
 
   return (
@@ -46,11 +39,10 @@ const ManagementSomething = () => {
                       <td>{something.name}</td>
                       <td>
                         {/* 対応するcolorを表示 */}
-                        {something.color_id}|
                         {
                           // 条件式を書かないとエラー
                           subData &&
-                          dataArrange(subData, something.color_id)['name']
+                          dataMatch(subData, something.color_id)['name']
                         }
                       </td>
                       <td><button>Edit</button></td>
