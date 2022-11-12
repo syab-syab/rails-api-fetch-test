@@ -1,9 +1,7 @@
 import React from 'react'
-// import useFetch from '../hooks/useFetch';
-// import useFetchSimple from '../hooks/useFetchSimple';
 import useFetchSuper from '../hooks/useFetchSuper';
-// import {useState} from 'react'
 import dataMatch from '../functions/dataMatch';
+import { useState } from 'react';
 // 管理画面のSomethingのリスト
 
 const ManagementSomething = () => {
@@ -14,7 +12,19 @@ const ManagementSomething = () => {
 
   const { data: somethings, subData, isLoaded, error } = useFetchSuper(url, urlSub)
 
+  // inputに格納する用
+  const [valueName, setValueName] = useState("test");
 
+  // 編集するデータのid
+  const [editId, setEditId] = useState();
+
+    // editボタン押したら編集用のstateにIDと値を格納する
+    const editInputStore = ( id, value) => {
+      console.log(`前: ${valueName} | ${editId}`)
+      setEditId(id)
+      setValueName(value)
+      console.log(`後: ${valueName} | ${editId}`)
+    }
 
   return (
     <div>
@@ -45,7 +55,8 @@ const ManagementSomething = () => {
                           dataMatch(subData, something.color_id)['name']
                         }
                       </td>
-                      <td><button>Edit</button></td>
+                      {/* editをクリックしたときの挙動が変 */}
+                      <td><button onClick={() => editInputStore(something.id, something.name)}>Edit</button></td>
                       <td><a href="#">Delete</a></td>
                     </tr>
                   ))
@@ -94,13 +105,19 @@ const ManagementSomething = () => {
             <label>name: </label><input type="text" />
             <br />
             <label>color: </label>
-            <select>
-              <option value="1">test</option>
-              <option value="2">test</option>
-              <option value="3">test</option>
-              <option value="4">test</option>
+            <label>color: </label>
+            {
+              subData &&
+              <select>
+              {
+                subData.map(sub => (
+                  <option key={sub.id} value={sub.id}>{sub.name}</option>
+                ))
+              }
             </select>
+            }
             <br />
+            {/* useFetchEditを使う */}
             <button>登録</button>
           </form>
         </div>
