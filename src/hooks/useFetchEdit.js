@@ -16,8 +16,10 @@ const useFetchEdit = (id, value, model, func) => {
       fetch(`http://localhost:3000/${model}/${id}`, params)
       // 編集後にページをリロード
         .then(window.location.reload())
+        // .then(console.log("clear"))
     }, 1000)
     func()
+    // console.log(params)
   } else {
     alert("編集中止");
   }

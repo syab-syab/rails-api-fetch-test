@@ -1,4 +1,3 @@
-import React from 'react'
 import { useState, useEffect } from 'react';
 // 一度に二つのurlからデータを取りたい
 
@@ -48,8 +47,8 @@ const useFetchSuper = (url, refUrl) => {
 
     return () => abortCont.abort();
     
-  }, [url])
-  console.log("yes")
+  }, [url, refUrl])
+  console.log("useFetchSuper")
   return { data, subData, isLoaded, error };
 }
 
