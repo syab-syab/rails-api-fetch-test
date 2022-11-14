@@ -80,6 +80,12 @@ const ManagementSomething = () => {
   }
 
   // editメソッド
+  // const dataEdit = (id, body, model, func) => {
+  //   alert(`id = ${id} : model = ${model}`)
+  //   alert(`body = ${JSON.stringify(body)}`)
+  //   func()
+  // }
+
   const dataEdit = useFetchEdit;
 
   // 編集後、stateをリセットする(edit)
@@ -93,9 +99,6 @@ const ManagementSomething = () => {
   // -------------------------------------------------
 
   // 削除メソッド
-  // const dataDelete = (id) => {
-  //   alert(`${id}を削除します`)
-  // }
 
   const dataDelete = useFetchDelete;
 
@@ -172,7 +175,7 @@ const ManagementSomething = () => {
             }
             <br />
             {/* postが上手くいかないので後回し */}
-            <button onClick={() => dataPost({"name": postValue, "color_id": parseInt(colorId, 10)}, "somethings")}>登録</button>
+            <button onClick={() => dataPost({"name": postValue, "color_id": colorId}, "somethings")}>登録</button>
           </form>
         </div>
       </div>
@@ -208,7 +211,7 @@ const ManagementSomething = () => {
             }
             <br />
             {/* editが上手くいかないので後回し */}
-            <button onClick={() => dataEdit(editId, {"name": valueName, "color_id": parseInt(refId, 10)}, "somethings", resetState)}>登録</button>
+            <button onClick={() => dataEdit(editId, {"name": valueName, "color_id": refId}, "somethings", resetState)}>登録</button>
           </form>
         </div>
       </div>

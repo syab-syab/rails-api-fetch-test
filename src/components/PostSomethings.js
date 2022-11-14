@@ -1,20 +1,38 @@
 import React from 'react';
 import { useState } from 'react';
+import usePost from '../hooks/usePost';
+import useFetch from '../hooks/useFetch';
 
 export default function PostSomethings() {
-  const [teaName, setTeaName] = useState('test');
+  const url = "http://localhost:3000/colors";
 
+  const { data: colors, isLoaded, error } = useFetch(url)
+
+  // somethingのname
+  const [value, setValue] = useState('test');
+
+  // somethingのcolor_id
+  const [colorId, setColorId] = useState(null)
   
+  // 確認用
   const [indicateValue, setIndicateValue] = useState('');
 
   const handleChange = (e) => {
-    setTeaName(e.target.value);
+    setValue(e.target.value);
   }
 
-  const handleClick = (e) => {
-    setIndicateValue(teaName);
-    setTeaName('');
+  const handleClick = () => {
+    alert(`value is ${value} : color_id is ${colorId}`)
+    setIndicateValue(value);
+    setValue('');
   }
+
+  const handleSelect = (e) => {
+    setColorId(e.target.value)
+  }
+
+    // postのメソッド
+    const postSomethings = usePost;
 
 
 
@@ -27,28 +45,35 @@ export default function PostSomethings() {
             <input
               type="text"
               name="name"
-              value={teaName}
+              value={value}
               onChange={handleChange}
             />
           </label>
           <br />
           <label>
           color:
-          <select>
-              <option value="4">red</option>
+          <select
+            onChange={handleSelect}
+            >
+            {error && <option>error</option>}
+            {isLoaded && <option>Loading...</option>}
+            {colors && 
+              colors.map(color => (
+                <option key={color.id} value={color.id}>{color.name}</option>
+              ))
+            }
+              {/* <option value="4">red</option>
               <option value="5">green</option>
-              <option value="6">yellow</option>
+              <option value="6">yellow</option> */}
             </select>
           </label>
           <br />
-          <input
-          // typeをsubmitにするとリロードされてしまう
-            type="button"
-            value="Submit"
-            onClick={handleClick}
-          />
+          <button onClick={() => handleClick()}>Submit</button>
+          {/* 多分jsonデータが2つ以上だと上手くpostやputが出来ないっぽい */}
+          <button onClick={() => postSomethings({"name": value, "color_id": colorId}, "somethings")}>POST</button>
         </form>
         <p>{indicateValue}</p>
+        <p>{colorId}</p>
     </div>
   )
 }
