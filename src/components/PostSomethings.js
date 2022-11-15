@@ -15,24 +15,26 @@ export default function PostSomethings() {
   const [colorId, setColorId] = useState(null)
   
   // 確認用
-  const [indicateValue, setIndicateValue] = useState('');
+  // const [indicateValue, setIndicateValue] = useState('');
 
   const handleChange = (e) => {
     setValue(e.target.value);
   }
 
-  const handleClick = () => {
-    alert(`value is ${value} : color_id is ${colorId}`)
-    setIndicateValue(value);
-    setValue('');
-  }
+  // const handleClick = () => {
+  //   alert(`value is ${value} : color_id is ${colorId}`)
+  //   setIndicateValue(value);
+  //   setValue('');
+  // }
 
   const handleSelect = (e) => {
     setColorId(e.target.value)
   }
 
-    // postのメソッド
-    const postSomethings = usePost;
+  
+
+  // postのメソッド
+  const postSomethings = usePost;
 
 
 
@@ -57,7 +59,8 @@ export default function PostSomethings() {
             >
             {error && <option>error</option>}
             {isLoaded && <option>Loading...</option>}
-            {colors && 
+            {
+              colors && 
               colors.map(color => (
                 <option key={color.id} value={color.id}>{color.name}</option>
               ))
@@ -68,11 +71,14 @@ export default function PostSomethings() {
             </select>
           </label>
           <br />
-          <button onClick={() => handleClick()}>Submit</button>
+          {/* <button onClick={() => handleClick()}>Submit</button> */}
           {/* 多分jsonデータが2つ以上だと上手くpostやputが出来ないっぽい */}
-          <button onClick={() => postSomethings({"name": value, "color_id": colorId}, "somethings")}>POST</button>
+          <button onClick={() => postSomethings({
+            "name": value,
+            "color_id": Number(colorId)
+          }, "somethings")}>POST</button>
         </form>
-        <p>{indicateValue}</p>
+        {/* <p>{indicateValue}</p> */}
         <p>{colorId}</p>
     </div>
   )

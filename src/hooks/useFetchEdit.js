@@ -13,17 +13,14 @@ const useFetchEdit = (id, value, model, func) => {
       headers:{'Content-Type': 'application/json'}
     }
 
-    alert(`params.method = ${params.method}`)
-    alert(`params.body = ${params.body}`)
-    alert(`params.headers = ${params.headers}`)
-    alert(`http://localhost:3000/${model}/${id}`)
 
-    setTimeout(() => {
+    // setTimeout(() => {
       fetch(`http://localhost:3000/${model}/${id}`, params)
       // 編集後にページをリロード
         // .then(alert(`params = ${params}`))
         .then(window.location.reload())
-    }, 1000)
+        .catch(err => console.log(err))
+    // }, 1000)
     func()
     // console.log(params)
   } else {
